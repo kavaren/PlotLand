@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlotLand", "PlotLand\PlotLand.csproj", "{A8E94A8B-D500-464C-9C46-931FB86740C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlotLand.Models", "PlotLand.Models\PlotLand.Models.csproj", "{92FF238F-ACF0-4FDA-9D84-9D8B690EBD65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8E94A8B-D500-464C-9C46-931FB86740C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8E94A8B-D500-464C-9C46-931FB86740C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8E94A8B-D500-464C-9C46-931FB86740C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8E94A8B-D500-464C-9C46-931FB86740C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92FF238F-ACF0-4FDA-9D84-9D8B690EBD65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92FF238F-ACF0-4FDA-9D84-9D8B690EBD65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92FF238F-ACF0-4FDA-9D84-9D8B690EBD65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92FF238F-ACF0-4FDA-9D84-9D8B690EBD65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C336C00D-7B3B-44B3-8E61-10802122765C}
+	EndGlobalSection
+EndGlobal
