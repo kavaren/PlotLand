@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{92FF238F-ACF0-4FDA-9D84-9D8B690EBD65}</ProjectGuid>
+    <ProjectGuid>{4C49D59E-2080-41A4-A1BD-5A7975C281ED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PlotLand.Models</RootNamespace>
-    <AssemblyName>PlotLand.Models</AssemblyName>
+    <RootNamespace>PlotLand.ViewModels</RootNamespace>
+    <AssemblyName>PlotLand.ViewModels</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,10 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities.cs" />
-    <Compile Include="ActivityList.cs" />
-    <Compile Include="PlotModel.cs" />
-    <Compile Include="PlotType.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
