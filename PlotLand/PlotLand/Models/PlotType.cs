@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlotLand.ViewModels
+namespace PlotLand.Models
 {
-    public class MainWindowViewModel
+    public enum PlotType
     {
+        TUZ,
+        RE,
+        RK
     }
 }
