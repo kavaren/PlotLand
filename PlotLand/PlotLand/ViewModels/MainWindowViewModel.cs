@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using FileHelpers;
 using PlotLand.Helpers;
 using PlotLand.Models;
 
@@ -14,12 +16,12 @@ namespace PlotLand.ViewModels
     {
         #region Fields
         private string _inputString;
-        private ObservableCollection<PlotModel> _plots = new ObservableCollection<PlotModel>();
+        private BindingList<PlotModel> _plots = new BindingList<PlotModel>();
         #endregion
 
         #region Properties
         public string InputString { get => _inputString; set => _UpdateField(ref _inputString, value); }
-        public ObservableCollection<PlotModel> Plots { get => _plots; set => _UpdateField(ref _plots, value); }
+        public BindingList<PlotModel> Plots { get => _plots; set => _UpdateField(ref _plots, value); }
         #endregion
 
         #region Delegates
@@ -34,7 +36,10 @@ namespace PlotLand.ViewModels
 
         private void _AddPlots()
         {
-            Plots.Add(new PlotModel(InputString));
+            //Plots.Add(new PlotModel(InputString));
+            var engine = new FileHelperEngine<PlotModel>();
+            List<PlotModel> records = engine.ReadFile("testy.csv").ToList<PlotModel>();
+            Plots = new BindingList<PlotModel>(records);
         }
     }
 }

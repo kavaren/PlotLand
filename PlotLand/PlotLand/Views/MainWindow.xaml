@@ -6,26 +6,34 @@
         xmlns:local="clr-namespace:PlotLand"
         xmlns:viewModels="clr-namespace:PlotLand.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" MinWidth="750" MinHeight="300">
     
     <Window.DataContext>
         <viewModels:MainWindowViewModel />
     </Window.DataContext>
-    
-    <Grid>
+    <Grid >
+    <Menu Height="24" VerticalAlignment="Top">
+            <MenuItem Header="File" Height="24" Width="Auto" Margin="4,0,0,0">
+                <MenuItem Header="Open" HorizontalAlignment="Left" Width="140" Command="{Binding AddPlotsCommand}"/>
+                <MenuItem Header="Save" HorizontalAlignment="Left" Width="140" />
+                <Separator HorizontalAlignment="Left" Height="1" Width="140"/>
+                <MenuItem Header="Exit" HorizontalAlignment="Left" Width="140" />
+            </MenuItem>
+        </Menu>
+    <Grid Margin="4,28,4,4">
         <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.3*" MinWidth="400"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.3*" MinWidth="515"/>
+                <ColumnDefinition Width="250" />
             </Grid.ColumnDefinitions>
         <ListView Margin="0" ItemsSource="{Binding Plots, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Plot Signature" Width="100" DisplayMemberBinding="{Binding PlotSignature}"/>
-                    <GridViewColumn Header="Plot Number" Width="100" DisplayMemberBinding="{Binding PlotNumber}" />
-                    <GridViewColumn Header="Plot Area" Width="100" DisplayMemberBinding="{Binding PlotArea}" />
-                    <GridViewColumn Header="Plot Type Use" Width="100" DisplayMemberBinding="{Binding PlotTypeUse}"/>
-                    <GridViewColumn Header="Plot Operation" Width="100" DisplayMemberBinding="{Binding PlotOperation}" />
-                    <GridViewColumn Header="Plot Usage Type" Width="100" DisplayMemberBinding="{Binding PlotUsageType}" />
+                    <GridViewColumn Header="Plot Signature" Width="Auto" DisplayMemberBinding="{Binding PlotSignature}"/>
+                    <GridViewColumn Header="Plot Number" Width="Auto" DisplayMemberBinding="{Binding PlotNumber}" />
+                    <GridViewColumn Header="Plot Area" Width="Auto" DisplayMemberBinding="{Binding PlotArea}" />
+                    <GridViewColumn Header="Plot Type Use" Width="Auto" DisplayMemberBinding="{Binding PlotTypeUse}"/>
+                    <GridViewColumn Header="Plot Auto" Width="Auto" DisplayMemberBinding="{Binding PlotOperation}" />
+                    <GridViewColumn Header="Plot Usage Type" Width="Auto" DisplayMemberBinding="{Binding PlotUsageType}" />
                 </GridView>
             </ListView.View>
         </ListView> 
@@ -44,12 +52,7 @@
                     <ColumnDefinition Width="1*" MinWidth="40"/>
                     <ColumnDefinition Width="0.75*" MinWidth="70"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Input" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="4"/>
-                <TextBox x:Name="textBoxPlotInput" Grid.Column="0" TextWrapping="Wrap" Text="{Binding InputString}" 
-                         VerticalAlignment="Stretch" MinHeight="24" Margin="40,0,0,0" AcceptsReturn="True" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto"/>
-                <Button x:Name="buttonAddInput" Content="Add" Grid.Row="0" Grid.Column="3" Margin="4,0,0,0" VerticalAlignment="Center"
-                        Command="{Binding AddPlotsCommand}" CommandParameter="{Binding Text, ElementName=textBoxPlotInput}" />
-
             </Grid>
+        </Grid>
     </Grid>
 </Window>
