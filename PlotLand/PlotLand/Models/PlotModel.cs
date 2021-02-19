@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace PlotLand.Models
     public class PlotModel
     {
         private string _plotSignature;
-        private int _plotNumber;
+        private string _plotNumber;
         private double _plotArea;
         private PlotType _plotTypeUse;
         private string _plotOperation;
@@ -19,45 +20,61 @@ namespace PlotLand.Models
         public PlotModel(string inputString)
         {
             string line = string.Empty;
-            int charFrom = 0, charTo = 0;
+            int charFrom = 0, charTo = 0, numFrom = 0, numTo = 0;
             using (StringReader reader = new StringReader(inputString))
             {
                 try
                 {
+
+                    //   "\"A,\"\"2,05\"\",JPO,,,,,080103_2.0015.24,\"\"2,05\"\",ONW_6,\"\"2,05\"\",,,,,,,,,,,\"", "A", "24", (double)2.05, PlotType.None, "", ""
                     line = reader.ReadLine();
+
                     //PlotSignature string
-                    //line = reader.ReadLine();
-
                     charTo = line.IndexOf(',');
-                    _plotSignature = line.Substring(charFrom+1, charTo-1);
-                    charFrom = charTo;
-
-                    //PlotNumber int
-                    charTo = line.IndexOf(',', charFrom + 1);
-                    var subString = line.Substring(charFrom + 3, charTo - 3);
-                    _plotNumber = Int32.Parse(subString);
+                    _plotSignature = line.Substring(charFrom + 1, charTo - 1);
                     charFrom = charTo;
 
                     //PlotArea double
-                    for (int i = 0; i < 7; i++)
+                    charTo = line.IndexOf(',', charFrom + 1);
+                    Double.TryParse(line.Substring(charFrom + 3, charTo - 2), NumberStyles.AllowDecimalPoint, CultureInfo.CreateSpecificCulture("fr-FR"), out _plotArea) ;
+                    charFrom = charTo;
+
+                    //PlotTypeUse enum
+                    for (int i = 0; i < 3; i++)
                     {
                         charFrom = charTo;
                         charTo = line.IndexOf(',', charFrom + 1);
                     }
-                    _plotArea = Double.Parse(line.Substring(charFrom + 2, charTo - 2));
+
+                    try
+                    {
+                        _plotTypeUse = (PlotType)Enum.Parse(typeof(PlotType), line.Substring(charFrom + 1, charTo - charFrom - 1));
+                    }
+                    catch(System.ArgumentException)
+                    {
+                        _plotTypeUse = PlotType.None;
+
+                    }
                     charFrom = charTo;
 
-                    //PlotTypeUse PlotType
-                    line = reader.ReadLine();
-                    Enum.TryParse(line, out _plotTypeUse);
+                    //PlotNumber int
+                    for (int i = 0; i < 4; i++)
+                    {
+                        charFrom = charTo;
+                        charTo = line.IndexOf(',', charFrom + 1);
+                    }
+                    for (int i = 0; i < 2; i++)
+                    {
+                        numFrom = numTo;
+                        numTo = line.IndexOf('.', numFrom + 1);
+                    }
+                    _plotNumber = line.Substring(numTo + 1, charTo - 1  - numTo);
 
                     //PlotOperation string
-                    line = reader.ReadLine();
-                    _plotOperation = line;
+                    _plotOperation = "";
 
                     //PlotUsageType string
-                    line = reader.ReadLine();
-                    _plotUsageType = line;
+                    _plotUsageType = "";
                 }
                 catch (ArgumentException)
                 {
@@ -67,7 +84,7 @@ namespace PlotLand.Models
         }
 
         public string PlotSignature { get => _plotSignature; set => _plotSignature = value; }
-        public int PlotNumber { get => _plotNumber; set => _plotNumber = value; }
+        public string PlotNumber { get => _plotNumber; set => _plotNumber = value; }
         public double PlotArea { get => _plotArea; set => _plotArea = value; }
         public PlotType PlotTypeUse { get => _plotTypeUse; set => _plotTypeUse = value; }
         public string PlotOperation { get => _plotOperation; set => _plotOperation = value; }

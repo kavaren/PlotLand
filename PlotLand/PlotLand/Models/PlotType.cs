@@ -8,6 +8,7 @@ namespace PlotLand.Models
 {
     public enum PlotType
     {
+        None,
         TUZ,
         RE,
         RK
